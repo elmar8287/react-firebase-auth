@@ -6,6 +6,7 @@
 # Built with
 
 - React JS with functional components
+- Firebase, for auth and storage
 - Used [Ant Design](https://ant.design/) for design
 - Netlify, for deployment
   
