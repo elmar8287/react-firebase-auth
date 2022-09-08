@@ -1,7 +1,7 @@
 # The queue system
 
 
-### This project was built for ticket system for companies which are daily gets a lot of clients each day.
+### This project was built for ticket system for companies which are daily gets a lot of clients.
 
 # Built with
 
