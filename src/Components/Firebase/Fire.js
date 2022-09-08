@@ -10,4 +10,6 @@ const firebaseConfig = {
   measurementId: process.env.FIREBASE_MEASUREMENT_ID
 };
 
-firebase.InitializeApp(firebaseConfig);
+const fire = firebase.InitializeApp(firebaseConfig);
+
+export default fire;
