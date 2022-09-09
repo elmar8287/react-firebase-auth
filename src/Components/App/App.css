@@ -125,7 +125,29 @@ button {
   background: #3a2b58;
 }
 
-.user-email {
+.user-info {
   color: rgb(238, 228, 48);
-  text-decoration: underline;
+}
+
+.google-sign {
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  justify-content:space-around;
+  cursor: pointer;
+}
+
+.google-sign h2 {
+  padding: 10px;
+}
+
+.avatar {
+  display: flex;
+  align-items: center;
+}
+
+.avatar img {
+  margin-left: 15px;
+  border-radius: 50%;
 }

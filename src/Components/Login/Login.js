@@ -1,8 +1,15 @@
 import React from 'react';
+import firebase from 'firebase';
 
 const Login = ({email, setEmail, password, setPassword, handleLogin, handleSignup, hasAccount, setHasAccount, emailError, passwordError}) => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+
+  const authWithGoogle = () => {
+    firebase.auth().signInWithPopup(provider);
+  }
+
   return (
-    <seection className="login">
+    <section className="login">
       <div className="loginContainer">
         <input
           placeholder="Enter your email"
@@ -38,8 +45,12 @@ const Login = ({email, setEmail, password, setPassword, handleLogin, handleSignu
           }
 
         </div>
+        <div className="google-sign" onClick={authWithGoogle}>
+          <h2>Sign in with Google</h2>
+          <img src="https://freesvg.org/img/1534129544.png" hight="20" width="50" alt="google-icon" />
+        </div>
       </div>
-    </seection>
+    </section>
   );
 }
 

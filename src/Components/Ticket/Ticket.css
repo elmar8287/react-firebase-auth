@@ -16,7 +16,7 @@
   flex-direction: column;
 }
 
-.ticket-form input {
+.ticket-form input, textarea {
   padding: 10px;
   margin-bottom: 5px;
   border-radius: 5px;
