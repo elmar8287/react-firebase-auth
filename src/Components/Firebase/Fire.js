@@ -1,15 +1,16 @@
 import firebase from 'firebase';
-
+  
 const firebaseConfig = {
-  apiKey: process.env.FIREBASE_KEY,
-  authDomain: process.env.FIREBASE_DOMAIN,
-  projectId: process.env.FIREBASE_PROJECT_ID,
-  storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.FIREBASE_SENDER_ID,
-  appId: process.env.FIREBASE_APP_ID,
-  measurementId: process.env.FIREBASE_MEASUREMENT_ID
+  apiKey: "AIzaSyAHtCClYX7fN-yyoIYrUVeqN2CI-DBVGO8",
+  authDomain: "avis-queue.firebaseapp.com",
+  databaseURL: "https://avis-queue-default-rtdb.firebaseio.com",
+  projectId: "avis-queue",
+  storageBucket: "avis-queue.appspot.com",
+  messagingSenderId: "309662597220",
+  appId: "1:309662597220:web:31d63526bdbb9fe5775f71",
+  measurementId: "G-BVZF40MTCE"
 };
-
-const fire = firebase.InitializeApp(firebaseConfig);
-
+    
+const fire = firebase.initializeApp(firebaseConfig);
+  
 export default fire;
