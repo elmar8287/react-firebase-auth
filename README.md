@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-Queue system
-=======
 # The queue system
 
 
@@ -43,4 +40,3 @@ Feel free to check the [issues page](https://github.com/elmar8287/react-firebase
 Give a ⭐️ if you like this project!
 
 License could be find [here](https://github.com/elmar8287/react-firebase-auth/blob/dev/LICENSE)
->>>>>>> 085c90570f15661a76cc5b6b39d4840210a8a756
