@@ -1,12 +1,14 @@
 import React from 'react';
+import Ticket from '../Ticket/Ticket.js';
 
-const Home = ({handleLogout}) => {
+const Home = ({handleLogout, user}) => {
   return (
-    <div>
+    <div className="home">
       <nav>
-        <h2>Wellcome</h2>
+        <h2>Wellcome <span className="user-email">{user.email}</span></h2>
         <button type="button" onClick={handleLogout}>Logout</button>
       </nav>
+      <Ticket />
     </div>
   );
 }

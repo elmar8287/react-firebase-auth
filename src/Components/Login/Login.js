@@ -2,9 +2,8 @@ import React from 'react';
 
 const Login = ({email, setEmail, password, setPassword, handleLogin, handleSignup, hasAccount, setHasAccount, emailError, passwordError}) => {
   return (
-    <div>
-      <h2>Login page</h2>
-      <div>
+    <seection className="login">
+      <div className="loginContainer">
         <input
           placeholder="Enter your email"
           type="email"
@@ -13,7 +12,7 @@ const Login = ({email, setEmail, password, setPassword, handleLogin, handleSignu
           value={email}
           onChange={(e)=> setEmail(e.target.value)}
         />
-        <p>{emailError}</p>
+        <p className="errorMsg">{emailError}</p>
         <input
           placeholder="Password"
           type="password"
@@ -21,8 +20,8 @@ const Login = ({email, setEmail, password, setPassword, handleLogin, handleSignu
           value={password}
           onChange={(e)=> setPassword(e.target.value)}
         />
-        <p>{passwordError}</p>
-        <div>
+        <p className="errorMsg">{passwordError}</p>
+        <div className="btnContainer">
 
           {
             hasAccount ? (
@@ -40,7 +39,7 @@ const Login = ({email, setEmail, password, setPassword, handleLogin, handleSignu
 
         </div>
       </div>
-    </div>
+    </seection>
   );
 }
 

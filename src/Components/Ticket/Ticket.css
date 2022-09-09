@@ -1,0 +1,25 @@
+.ticket {
+  background-color: white;
+  width: 40%;
+  margin: 5% 30% 5% 30%;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+.ticket h2 {
+  margin-bottom: 15px;
+}
+
+
+.ticket-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.ticket-form input {
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
+  border: none;
+  background-color: rgb(240, 237, 237);
+}

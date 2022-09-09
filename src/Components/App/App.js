@@ -83,12 +83,11 @@ const App = () => {
 
 
   return (
-    <div>
-      <h1>Queue system</h1>
-
+    <div className="App">
       {
         user ? (
           <Home
+            user={user}
             handleLogout={handleLogout}
           />
         ) : (
