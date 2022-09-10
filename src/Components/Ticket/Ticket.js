@@ -16,7 +16,6 @@ const Ticket = ({user}) => {
 
   const db = firebase.firestore()
   const handleSubmit = (e) => {
-    if(date >= datedate ) {
       e.preventDefault();
       db.collection("Tickets").add({
         user: user.email,
@@ -37,9 +36,7 @@ const Ticket = ({user}) => {
       setCat("")
       setOdo("")
       setNote("")
-    } else {
-      return alert("Enter the future date")
-    }
+ 
   };
 
   const [modal, setModal] = useState(false)
@@ -51,7 +48,7 @@ const Ticket = ({user}) => {
     <div className="ticket">
       <h2>Create the ticket</h2>
       <form className="ticket-form" onSubmit={handleSubmit}>
-        <input type="date" required placeholder="Select the date" value={date} onChange={(e)=> {setDate(e.target.value); modalHandle()}} />
+        <input type="date" required min={datedate} placeholder="Select the date" value={date} onChange={(e)=> {setDate(e.target.value); modalHandle()}} />
         <select value={cat} onChange={(e)=> setCat(e.target.value)}>
           <option>Oil change</option>
           <option>Engine problem</option>
