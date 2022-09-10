@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Link
+} from 'react-router-dom';
 import fire from '../Firebase/Fire';
 import Login from '../Login/Login';
 import Home from '../Home/Home';
+import Account from '../Account/Account';
 import "./App.css";
+import Navbar from '../Navbar/Navbar';
 
 const App = () => {
   const [user, setUser] = useState("");
@@ -81,17 +89,23 @@ const App = () => {
   },[]);
 
 
-
+  // <Route path='/' element={<Home />} />
+  // <Route path='/account' element={<Account />}
   return (
+    <Router>
     <div className="App">
+    {
+      user && <Navbar handleLogout={handleLogout} user={user}/>
+    }
+
+      <Routes>
       {
         user ? (
-          <Home
+          <Route path="/" element={<Home
             user={user}
-            handleLogout={handleLogout}
-          />
+          />} />
         ) : (
-          <Login
+          <Route path="/" element={<Login
             email={email}
             setEmail={setEmail}
             password={password} 
@@ -102,11 +116,15 @@ const App = () => {
             setHasAccount={setHasAccount}
             emailError={emailError}
             passwordError={passwordError}
-        />
+        />} />
         )
       }
+      <Route path="/account" element={<Account />} />
+      
+      </Routes>
       
     </div>
+    </Router>
   );
 }
 

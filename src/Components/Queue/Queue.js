@@ -26,13 +26,13 @@ const Queue = ({user, date, close}) => {
   },[]);
 
   const xxx = myTickets.filter(e=>e.date===date).length
-  user.line = xxx
+  user.line = xxx+1
 
   if(date) {
     return (
       <div className="modal-main">
-        {xxx>=10 ? <span>No places, anycase</span> : <p>There are {xxx-1>=0 ? xxx : 0} in the line</p>}
-        <h3>Your line number will be {user.line+1}</h3>
+        {xxx>=10 ? <span>No places, anycase</span> : <p>There are {xxx} in the line</p>}
+        <h3>Your line number will be {user.line}</h3>
         <button onClick={close}>Countinue</button>
       </div>
     );

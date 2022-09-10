@@ -42,24 +42,6 @@ const Ticket = ({user}) => {
     }
   };
 
-
-  // const showLastTicket = () => {
-  //   setShowLast(true)
-  // }
-
-  // console.log("Show Last", lastAdded)
-
-  // const getLastAdded = (e) => {
-  //   db.collection("Tickets")
-  //     .doc(lastAdded)
-  //     .get()
-  //     .then((snapshot) => {
-  //       if(snapshot) {
-  //         setShowLast(snapshot.data())
-  //       }
-  //     })
-  //     console.log("Show Last001", showLast)
-  // }
   const [modal, setModal] = useState(false)
   const modalHandle = () => {
     setModal(!modal)
@@ -71,7 +53,6 @@ const Ticket = ({user}) => {
       <form className="ticket-form" onSubmit={handleSubmit}>
         <input type="date" required placeholder="Select the date" value={date} onChange={(e)=> {setDate(e.target.value); modalHandle()}} />
         <select onChange={(e)=> setCat(e.target.value)}>
-          <option value="" selected disabled hidden>Choose here</option>
           <option value={cat}>Oil change</option>
           <option value={cat}>Engine problem</option>
           <option value={cat}>Weells</option>
@@ -79,7 +60,7 @@ const Ticket = ({user}) => {
         </select>
         <input type="number" min="0" required placeholder="Odometer" value={odo} onChange={(e)=> setOdo(e.target.value)} />
         <textarea type="text-area" placeholder="Notes" value={note} onChange={(e)=> setNote(e.target.value)} />
-        <button button type="submit">Create</button>
+        <button type="submit">Create</button>
       </form>
       {
           modal ?
