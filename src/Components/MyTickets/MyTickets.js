@@ -33,9 +33,7 @@ const MyTickets = ({user}) => {
 
   return (
     <div  className="my-tickets">
-
-    <h2>My tickets</h2>
-    <h3>{myTickets.filter(e => e.user===user.email).length}</h3>
+    <h3>You have {myTickets.filter(e => e.user===user.email).length} tickets</h3>
     <ul>
     {myTickets &&
       myTickets

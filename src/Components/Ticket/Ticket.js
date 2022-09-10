@@ -52,11 +52,11 @@ const Ticket = ({user}) => {
       <h2>Create the ticket</h2>
       <form className="ticket-form" onSubmit={handleSubmit}>
         <input type="date" required placeholder="Select the date" value={date} onChange={(e)=> {setDate(e.target.value); modalHandle()}} />
-        <select onChange={(e)=> setCat(e.target.value)}>
-          <option value={cat}>Oil change</option>
-          <option value={cat}>Engine problem</option>
-          <option value={cat}>Weells</option>
-          <option value={cat}>Other</option>
+        <select value={cat} onChange={(e)=> setCat(e.target.value)}>
+          <option>Oil change</option>
+          <option>Engine problem</option>
+          <option>Weells</option>
+          <option>Other</option>
         </select>
         <input type="number" min="0" required placeholder="Odometer" value={odo} onChange={(e)=> setOdo(e.target.value)} />
         <textarea type="text-area" placeholder="Notes" value={note} onChange={(e)=> setNote(e.target.value)} />
