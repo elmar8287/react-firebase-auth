@@ -1,6 +1,7 @@
 import React from 'react';
 import Ticket from '../Ticket/Ticket.js';
 import Account from '../Account/Account.js';
+import MyTickets from '../MyTickets/MyTickets.js';
 
 const Home = ({handleLogout, user}) => {
   return (
@@ -17,11 +18,14 @@ const Home = ({handleLogout, user}) => {
           :
           <h2>Wellcome user</h2>
         }
-
+        <div className="nav-account">Account editing</div>
         <button type="button" onClick={handleLogout}>Logout</button>
       </nav>
       <Ticket user={user}/>
-      <Account user={user}/>
+      {
+        false && <Account user={user}/>
+      }
+      <MyTickets user={user}/>
     </div>
   );
 }
