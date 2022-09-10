@@ -1,0 +1,9 @@
+.my-tickets {
+  color: white;
+}
+
+.my-tickets li {
+  border: solid white;
+  margin: 5px;
+  padding: 5px;
+}

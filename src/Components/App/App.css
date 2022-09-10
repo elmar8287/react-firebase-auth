@@ -151,3 +151,7 @@ button {
   margin-left: 15px;
   border-radius: 50%;
 }
+
+.nav-account {
+  margin-right: -40%;
+}
