@@ -1,7 +1,6 @@
 import React from 'react';
 import Ticket from '../Ticket/Ticket.js';
 import Account from '../Account/Account.js';
-import MyTickets from '../MyTickets/MyTickets.js';
 
 const Home = ({ user}) => {
   return (
@@ -10,7 +9,6 @@ const Home = ({ user}) => {
       {
         false && <Account user={user}/>
       }
-      <MyTickets user={user}/>
     </div>
   );
 }

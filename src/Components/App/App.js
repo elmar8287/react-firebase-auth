@@ -11,6 +11,8 @@ import Home from '../Home/Home';
 import Account from '../Account/Account';
 import "./App.css";
 import Navbar from '../Navbar/Navbar';
+import MyTickets from '../MyTickets/MyTickets';
+import firebase from 'firebase';
 
 const App = () => {
   const [user, setUser] = useState("");
@@ -88,14 +90,31 @@ const App = () => {
     authListener();
   },[]);
 
+  const [myTickets, setMyTickets] = useState([]);
+  const [loading, setLoading] = useState(false)
+  const db = firebase.firestore().collection("Tickets");
 
-  // <Route path='/' element={<Home />} />
-  // <Route path='/account' element={<Account />}
+  const fetchTickets = () => {
+    setLoading(true)
+    db.onSnapshot((querySnapshots) => {
+      const items = [];
+      querySnapshots.forEach((doc) => {
+        items.push(doc.data());
+      });
+      setMyTickets(items);
+      setLoading(false);
+    });
+  };
+
+  useEffect(()=> {
+    fetchTickets();
+  },[]);
+
   return (
     <Router>
     <div className="App">
     {
-      user && <Navbar handleLogout={handleLogout} user={user}/>
+      user && <Navbar handleLogout={handleLogout} user={user} myTickets={myTickets}/>
     }
 
       <Routes>
@@ -120,6 +139,7 @@ const App = () => {
         )
       }
       <Route path="/account" element={<Account />} />
+      <Route path="/tickets" element={<MyTickets user={user} myTickets={myTickets}/>} />
       
       </Routes>
       

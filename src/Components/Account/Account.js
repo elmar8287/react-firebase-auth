@@ -40,42 +40,6 @@ const Account = ({user}) => {
     setPhone("")
   };
 
-
-
-
-
-
-
-  // const db = firebase.firestore()
-  // const newDate = new Date()
-  // const currentDay = newDate.getDate()
-  // const currentMonth = newDate.getMonth()+1;
-  // const currentYear = newDate.getFullYear();
-  // const dateToday = currentDay + "." + currentMonth + "." + currentYear;
-  // const handleSubmit = (e) => {
-  //   e.preventDefault()
-  //   db.collection("Accounts").add({
-  //     userName: user.displayName,
-  //     userEmail: user.email,
-  //     phone: phone,
-  //     vendor: vendor,
-  //     model: model,
-  //     plate: plate,
-  //     company: company,
-  //     created: dateToday
-  //   }).then((docRef) => {
-  //     const docId = docRef.id;
-  //     console.log(docId);
-  //   }).catch((err) => {
-  //     console.log("Error", err.message)
-  //   });
-  //   setVendor("")
-  //   setModel("")
-  //   setPlate("")
-  //   setCompany("")
-  //   setPhone("")
-  // };
-
   const [saved, setSaved] = useState(false)
   const dataSaved = () => {
     setSaved(!saved)

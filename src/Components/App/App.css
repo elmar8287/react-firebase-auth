@@ -155,4 +155,11 @@ button {
 
 .nav-link {
   margin-right: -40%;
+  width: 150px;
+  padding: 8px;
+  background: #3a2b58;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
 }

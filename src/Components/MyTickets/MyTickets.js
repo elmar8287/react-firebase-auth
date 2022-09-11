@@ -1,58 +1,61 @@
 import React, {useState, useEffect} from 'react';
-import firebase from 'firebase';
 import "./MyTickets.css"
 
-const MyTickets = ({user}) => {
-  const [myTickets, setMyTickets] = useState([]);
-  const [loading, setLoading] = useState(false)
-  const db = firebase.firestore().collection("Tickets");
+const MyTickets = ({user, myTickets}) => {
+  const [filterDate, setfilterDate] = useState()
+  const [list, setList] = useState("")
 
-  // useEffect(()=> {
-  //   db.onSnapshot(snapshot => {
-  //     setMyTickets(snapshot.docs.map(doc=>doc.data()))
-  //   });
-  //   console.log(myTickets)
-  // },[])
+  const formatDate = (e) => {
+    const rawDate = e.target.value
+    const formatedDate =rawDate.split('/').reverse().join("-")
+    setfilterDate(formatedDate)
+    console.log("date", filterDate)
+  }
 
+  const filtering= () => {
+    setList(myTickets)
+  }
 
-  const fetchTickets = () => {
-    setLoading(true)
-    db.onSnapshot((querySnapshots) => {
-      const items = [];
-      querySnapshots.forEach((doc) => {
-        items.push(doc.data());
-      });
-      setMyTickets(items);
-      setLoading(false);
-    });
-  };
+  const getFilter = () => {
+    setList(myTickets.filter(e => e.date===filterDate))
+  }
 
   useEffect(()=> {
-    fetchTickets();
-  },[]);
+    filtering()
+  }, [])
+  
 
+  
   return (
     <div  className="my-tickets">
-    <h3>You have {myTickets.filter(e => e.user===user.email).length} tickets</h3>
-    <ul>
-    {myTickets &&
-      myTickets
-      .filter(e => e.user===user.email)
-      .map(ticket=> (
-        <li>
-        <h4>Category: {ticket.cat}</h4>
-        <p>Appointment date: {ticket.date}</p>
-        <p>Odometer: {ticket.odo}</p>
-        <p>Your line number: {ticket.line}</p>
-        <p>Notes: {ticket.note}</p>
-        <p>Created date: {ticket.created}</p>
-        </li>
+      <h3>You have in total {myTickets.filter(e => e.user===user.email).length} tickets</h3>
+      <div className="mytickets-filter">
+        <span>Filter by the appointment date: </span>
+        <input type="date" value={filterDate} onChange={e => formatDate(e)} />
+        <span className="clear-filter" onClick={getFilter}>Filter</span>
+        <span className="clear-filter" onClick={filtering}>Clear</span>
+      </div>
+      <ul>
+      {list && list.length>0 ?
+        list
+        .filter(e => (e.user===user.email))
+        .map(ticket=> (
 
-      ))
-    }
-
-    </ul>
-
+          <li>
+            <div className="ticket-view">
+              <h4>Appointment date: {ticket.date}</h4>
+              <p>Line number: {ticket.line}</p>
+            </div>
+          <p>Category: {ticket.cat}</p>
+          <p>Odometer: {ticket.odo}</p>
+          <p>Notes: {ticket.note}</p>
+          <p>Created date: {ticket.created}</p>
+          </li>
+        ))
+        :
+        <p>There are no tickets found</p>
+      }
+      </ul>
     </div>
   );
 }
