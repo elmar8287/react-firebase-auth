@@ -9,7 +9,6 @@ const MyTickets = ({user, myTickets}) => {
     const rawDate = e.target.value
     const formatedDate =rawDate.split('/').reverse().join("-")
     setfilterDate(formatedDate)
-    console.log("date", filterDate)
   }
 
   const filtering= () => {
@@ -32,7 +31,7 @@ const MyTickets = ({user, myTickets}) => {
       <div className="mytickets-filter">
         <span>Filter by the appointment date: </span>
         <input type="date" value={filterDate} onChange={e => formatDate(e)} />
-        <span className="clear-filter" onClick={getFilter}>Filter</span>
+        <span className="clear-filter" onClick={filterDate && getFilter}>Filter</span>
         <span className="clear-filter" onClick={filtering}>Clear</span>
       </div>
       <ul>

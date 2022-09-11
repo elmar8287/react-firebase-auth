@@ -45,14 +45,6 @@ button {
   box-shadow: 0 50px 70px -20px rgba(0, 0, 0, 0.8);
 }
 
-/* .login .loginContainer label {
-  color: white;
-  margin: 14px 0;
-  display: block;
-  font-size: 22px;
-  line-height: 1;
-} */
-
 .login .loginContainer input {
   width: 100%;
   border: none;
@@ -154,7 +146,7 @@ button {
 }
 
 .nav-link {
-  margin-right: -40%;
+  margin-right: -20%;
   width: 150px;
   padding: 8px;
   background: #3a2b58;

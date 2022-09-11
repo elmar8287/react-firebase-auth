@@ -28,9 +28,7 @@ const Ticket = ({user}) => {
       }).then((docRef) => {
         const docId = docRef.id;
         setLastAdded(docId)
-        console.log(docId);
       }).catch((err) => {
-        console.log("Error", err.message)
       });
       setDate("")
       setCat("")

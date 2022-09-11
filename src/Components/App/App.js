@@ -110,6 +110,23 @@ const App = () => {
     fetchTickets();
   },[]);
 
+  const [accounts, setAccounts] = useState([]);
+  const db_accounts = firebase.firestore().collection("Accounts")
+
+  const fetchAccounts = () => {
+    db_accounts.onSnapshot((querySnapshots) => {
+      const items = [];
+      querySnapshots.forEach((doc) => {
+        items.push(doc.data());
+      });
+      setAccounts(items);
+    });
+  };
+
+  useEffect(()=> {
+    fetchAccounts();
+  },[]);
+
   return (
     <Router>
     <div className="App">
@@ -138,11 +155,16 @@ const App = () => {
         />} />
         )
       }
-      <Route path="/account" element={<Account />} />
+      <Route path="/account" element={<Account user={user} accounts={accounts} />} />
       <Route path="/tickets" element={<MyTickets user={user} myTickets={myTickets}/>} />
-      
       </Routes>
-      
+      {accounts &&
+        accounts.map((e)=> {
+          <div className="ticket-form">
+            <h2>{e.created}</h2>
+          </div>
+        })
+      }
     </div>
     </Router>
   );

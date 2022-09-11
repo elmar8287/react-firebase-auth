@@ -6,15 +6,16 @@ import {
 } from 'react-router-dom';
 import "./Account.css";
 
-const Account = ({user}) => {
+const Account = ({user, accounts}) => {
   const [vendor, setVendor] = useState('');
   const [model, setModel] = useState('');
   const [plate, setPlate] = useState('');
   const [company, setCompany] = useState('');
   const [phone, setPhone] = useState('');
-  const [account, setAccount] = useState("")
 
   let datedate = moment().format('YYYY-MM-D');
+  // const accountsList = accounts.filter(e => e.created==="2022-09-11")
+
 
   const db = firebase.firestore()
   const handleSubmit = (e) => {
@@ -29,9 +30,7 @@ const Account = ({user}) => {
       created: datedate
     }).then((docRef) => {
       const docId = docRef.id;
-      console.log(docId);
     }).catch((err) => {
-      console.log("Error", err.message)
     });
     setVendor("")
     setModel("")
@@ -60,6 +59,13 @@ const Account = ({user}) => {
         <input type="text" placeholder="Enter the company" value={company} onChange={(e)=> setCompany(e.target.value)} />
         <button type="submit" onClick={dataSaved}>Save</button>
       </form>
+      {accounts &&
+        accounts.map((e)=> {
+          <div className="ticket-form">
+            <h2>{e.created}</h2>
+          </div>
+        })
+      }
     </div>
   );
 }
