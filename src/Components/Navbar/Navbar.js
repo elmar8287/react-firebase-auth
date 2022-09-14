@@ -13,7 +13,7 @@ const Navbar = ({handleLogout, user, myTickets}) => {
           <div className="avatar">
             <h2>Welcome <span className="user-info">{user.displayName ? user.displayName : user.email}</span></h2>
             {
-              user.photoURL ? <img src={user.photoURL} alt="avatar"/> : null
+              user.photoURL ? <img src={user.photoURL} alt="avatar"/> : <p> </p>
             }
           </div>
           :
