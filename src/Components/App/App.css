@@ -28,7 +28,7 @@ button {
 
 .login .loginContainer {
   border-radius: 10px;
-  padding: 60px;
+  padding: 5px;
   margin: auto;
   width: 100%;
   max-width: 520px;
@@ -126,7 +126,7 @@ button {
 
 .google-sign {
   background-color: white;
-  padding: 20px;
+  padding: 5px;
   border-radius: 5px;
   display: flex;
   justify-content:space-around;
@@ -134,7 +134,7 @@ button {
 }
 
 .google-sign h2 {
-  padding: 10px;
+  padding: 5px;
 }
 
 .avatar {
