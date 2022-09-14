@@ -17,6 +17,8 @@
 
 ## Project status: on going
 
+- Going to implement the Redux for state management
+
 ### Run project on local machine
 
 - copy and run this command to your terminal `git clone https://github.com/elmar8287/react-firebase-auth.git`
