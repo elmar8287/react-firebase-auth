@@ -46,10 +46,10 @@ const Account = ({user, accounts}) => {
 
   return (
     <div className="profile-info">
-      <Link to="/" className="nav-link">Back</Link>
-      <h2>Profile details</h2>
+      <Link to="/" className="nav-link">Qeriyə</Link>
+      <h2>Hesab məlumatları</h2>
       {
-        saved ? <p className="success">All changes are saved succesfully!</p> : !saved
+        saved ? <p className="success">Yadda saxlanıldı!</p> : !saved
       }
       <form className="ticket-form" onSubmit={handleSubmit}>
         <input type="text" placeholder="Enter your phone number" value={phone} onChange={(e)=> setPhone(e.target.value)} />
@@ -57,7 +57,7 @@ const Account = ({user, accounts}) => {
         <input type="text" placeholder="Enter the car model" value={model} onChange={(e)=> setModel(e.target.value)} />
         <input type="text" placeholder="Enter the plate number" value={plate} onChange={(e)=> setPlate(e.target.value)} />
         <input type="text" placeholder="Enter the company" value={company} onChange={(e)=> setCompany(e.target.value)} />
-        <button type="submit" onClick={dataSaved}>Save</button>
+        <button type="submit" onClick={dataSaved}>Yadda saxla</button>
       </form>
       {accounts &&
         accounts.map((e)=> {

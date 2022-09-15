@@ -44,18 +44,18 @@ const Ticket = ({user}) => {
 
   return (
     <div className="ticket">
-      <h2>Create the ticket</h2>
+      <h2>Növbə üçün sorğu</h2>
       <form className="ticket-form" onSubmit={handleSubmit}>
         <input type="date" required min={datedate} placeholder="Select the date" value={date} onChange={(e)=> {setDate(e.target.value); modalHandle()}} />
         <select value={cat} onChange={(e)=> setCat(e.target.value)}>
-          <option>Oil change</option>
-          <option>Engine problem</option>
-          <option>Weells</option>
-          <option>Other</option>
+          <option>Yağ dəyişmə</option>
+          <option>Mühərrik problemi</option>
+          <option>Təkər problemi</option>
+          <option>Başqa</option>
         </select>
         <input type="number" min="0" required placeholder="Odometer" value={odo} onChange={(e)=> setOdo(e.target.value)} />
-        <textarea type="text-area" placeholder="Notes" value={note} onChange={(e)=> setNote(e.target.value)} />
-        <button type="submit">Create</button>
+        <textarea type="text-area" placeholder="Qeydlər" value={note} onChange={(e)=> setNote(e.target.value)} />
+        <button type="submit">Yarat</button>
       </form>
       {
           modal ?

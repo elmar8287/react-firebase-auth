@@ -33,20 +33,20 @@ const Login = ({email, setEmail, password, setPassword, handleLogin, handleSignu
           {
             hasAccount ? (
               <>
-                <button type="button" onClick={handleLogin}>Sign In</button>
-                <p>Do not have an account? <span onClick={() => setHasAccount(!hasAccount)}>Sign Up</span></p>
+                <button type="button" onClick={handleLogin}>Daxil ol</button>
+                <p>Hesabınız yoxdur? <span onClick={() => setHasAccount(!hasAccount)}>Qeydiyyat</span></p>
               </>
             ) : (
               <>
-              <button type="button" onClick={handleSignup}>Sign Up</button>
-              <p>Have an account? <span  onClick={() => setHasAccount(!hasAccount)}>Sign In</span></p>
+              <button type="button" onClick={handleSignup}>Qeydiyyat</button>
+              <p>Hesabınız var? <span  onClick={() => setHasAccount(!hasAccount)}>Daxil ol</span></p>
             </>
             )
           }
 
         </div>
         <div className="google-sign" onClick={authWithGoogle}>
-          <h2>Sign in with Google</h2>
+          <h2>Google ilə daxil ol</h2>
           <img src="https://freesvg.org/img/1534129544.png" hight="20" width="50" alt="google-icon" />
         </div>
       </div>

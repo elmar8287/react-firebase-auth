@@ -27,12 +27,12 @@ const MyTickets = ({user, myTickets}) => {
   
   return (
     <div  className="my-tickets">
-      <h3>You have in total {myTickets.filter(e => e.user===user.email).length} tickets</h3>
+      <h3>Sizin ümümi {myTickets.filter(e => e.user===user.email).length} sorğunuz var</h3>
       <div className="mytickets-filter">
-        <span>Filter by the appointment date: </span>
+        <span>Sorğu tarixi ilə filtrə elə: </span>
         <input type="date" value={filterDate} onChange={e => formatDate(e)} />
-        <span className="clear-filter" onClick={filterDate && getFilter}>Filter</span>
-        <span className="clear-filter" onClick={filtering}>Clear</span>
+        <span className="clear-filter" onClick={filterDate && getFilter}>Filtrə</span>
+        <span className="clear-filter" onClick={filtering}>Sil</span>
       </div>
       <ul>
       {list && list.length>0 ?
@@ -42,17 +42,17 @@ const MyTickets = ({user, myTickets}) => {
 
           <li>
             <div className="ticket-view">
-              <h4>Appointment date: {ticket.date}</h4>
-              <p>Line number: {ticket.line}</p>
+              <h4>Sorğu günü: {ticket.date}</h4>
+              <p>Növbə: {ticket.line}</p>
             </div>
-          <p>Category: {ticket.cat}</p>
+          <p>Kategoriya: {ticket.cat}</p>
           <p>Odometer: {ticket.odo}</p>
-          <p>Notes: {ticket.note}</p>
-          <p>Created date: {ticket.created}</p>
+          <p>Qeydlər: {ticket.note}</p>
+          <p>Yaratma tarixi: {ticket.created}</p>
           </li>
         ))
         :
-        <p>There are no tickets found</p>
+        <p>Sorğu tapılmadı</p>
       }
       </ul>
     </div>

@@ -31,9 +31,9 @@ const Queue = ({user, date, close}) => {
   if(date) {
     return (
       <div className="modal-main">
-        {xxx>=10 ? <span>No places, anycase</span> : <p>There are {xxx} in the line</p>}
-        <h3>Your line number will be {user.line}</h3>
-        <button onClick={close}>Countinue</button>
+        {xxx>=10 ? <span>Yerlər yoxdur, hər-halda</span> : <p>Növbədə {xxx} nəfər var</p>}
+        <h3>Sizin növbəniz {user.line}</h3>
+        <button onClick={close}>Davam</button>
       </div>
     );
   }
