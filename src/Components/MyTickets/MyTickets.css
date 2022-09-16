@@ -1,5 +1,6 @@
 .my-tickets {
   text-align: center;
+  overflow-wrap: break-word;
 }
 
 .my-tickets li {
@@ -9,6 +10,8 @@
   list-style: none;
   border-radius: 5px;
   text-align: left;
+  display: flex;
+  flex-direction: column;
 }
 
 .my-tickets li p {

@@ -2,8 +2,7 @@ import React, { useState, useEffect } from 'react';
 import {
   BrowserRouter as Router,
   Routes,
-  Route,
-  Link
+  Route
 } from 'react-router-dom';
 import fire from '../Firebase/Fire';
 import Login from '../Login/Login';
@@ -92,7 +91,7 @@ const App = () => {
 
   const [myTickets, setMyTickets] = useState([]);
   const [loading, setLoading] = useState(false)
-  const db = firebase.firestore().collection("Tickets");
+  const db = firebase.firestore().collection("Tickets").orderBy('created', 'desc');
 
   const fetchTickets = () => {
     setLoading(true)
@@ -125,8 +124,9 @@ const App = () => {
 
   useEffect(()=> {
     fetchAccounts();
+    console.log(accounts)
   },[]);
-
+ 
   return (
     <Router>
     <div className="App">
@@ -158,13 +158,6 @@ const App = () => {
       <Route path="/account" element={<Account user={user} accounts={accounts} />} />
       <Route path="/tickets" element={<MyTickets user={user} myTickets={myTickets}/>} />
       </Routes>
-      {accounts &&
-        accounts.map((e)=> {
-          <div className="ticket-form">
-            <h2>{e.created}</h2>
-          </div>
-        })
-      }
     </div>
     </Router>
   );

@@ -12,6 +12,7 @@ const Login = ({email, setEmail, password, setPassword, handleLogin, handleSignu
     <section className="login">
       <div className="loginContainer">
         <input
+          maxlength="50"
           placeholder="Enter your email"
           type="email"
           autoFocus
@@ -21,6 +22,7 @@ const Login = ({email, setEmail, password, setPassword, handleLogin, handleSignu
         />
         <p className="errorMsg">{emailError}</p>
         <input
+          maxlength="50"
           placeholder="Password"
           type="password"
           requered

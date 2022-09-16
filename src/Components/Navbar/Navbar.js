@@ -11,7 +11,7 @@ const Navbar = ({handleLogout, user, myTickets}) => {
         {
           user ?
           <div className="avatar">
-            <h2>Xoş gəldin <span className="user-info">{user.displayName ? user.displayName : user.email}</span></h2>
+            <h2>Xoş gəldiniz, <span className="user-info">{user.displayName ? user.displayName : user.email}</span></h2>
             {
               user.photoURL ? <img src={user.photoURL} alt="avatar"/> : <p> </p>
             }

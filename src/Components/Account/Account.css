@@ -16,6 +16,14 @@
   border-radius: 5px
 }
 
+.profile-view {
+  padding: 5px;
+}
+
+.profile-view p {
+  margin-top: 5px;
+}
+
 @media screen and (min-width: 768px) {  
   .profile-info {
     margin-top: 30px;

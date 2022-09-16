@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import firebase from 'firebase';
 import moment from 'moment';
 import {
@@ -12,6 +12,7 @@ const Account = ({user, accounts}) => {
   const [plate, setPlate] = useState('');
   const [company, setCompany] = useState('');
   const [phone, setPhone] = useState('');
+  const [year, setYear] = useState('');
 
   let datedate = moment().format('YYYY-MM-D');
   // const accountsList = accounts.filter(e => e.created==="2022-09-11")
@@ -24,15 +25,18 @@ const Account = ({user, accounts}) => {
       user: user.email,
       vendor: vendor,
       model: model,
+      year: year,
       plate: plate,
       company: company,
       phone: phone,
-      created: datedate
+      created: datedate,
+      hasProfile: "1"
     }).then((docRef) => {
       const docId = docRef.id;
     }).catch((err) => {
     });
     setVendor("")
+    setYear("")
     setModel("")
     setPlate("")
     setCompany("")
@@ -44,6 +48,8 @@ const Account = ({user, accounts}) => {
     setSaved(!saved)
   }
 
+  let a = accounts.filter(e => e.hasProfile==="1").filter(e=> e.user===user.email)
+
   return (
     <div className="profile-info">
       <Link to="/" className="nav-link">Qeriyə</Link>
@@ -51,21 +57,34 @@ const Account = ({user, accounts}) => {
       {
         saved ? <p className="success">Yadda saxlanıldı!</p> : !saved
       }
-      <form className="ticket-form" onSubmit={handleSubmit}>
-        <input type="text" placeholder="Enter your phone number" value={phone} onChange={(e)=> setPhone(e.target.value)} />
-        <input type="text" placeholder="Enter the car vendor" value={vendor} onChange={(e)=> setVendor(e.target.value)} />
-        <input type="text" placeholder="Enter the car model" value={model} onChange={(e)=> setModel(e.target.value)} />
-        <input type="text" placeholder="Enter the plate number" value={plate} onChange={(e)=> setPlate(e.target.value)} />
-        <input type="text" placeholder="Enter the company" value={company} onChange={(e)=> setCompany(e.target.value)} />
-        <button type="submit" onClick={dataSaved}>Yadda saxla</button>
-      </form>
-      {accounts &&
-        accounts.map((e)=> {
-          <div className="ticket-form">
-            <h2>{e.created}</h2>
-          </div>
-        })
+      {
+        a.length === 0 && 
+        <form className="ticket-form" onSubmit={handleSubmit}>
+          <input type="number" required maxlength="50" placeholder="Telefon nömrəniz" value={phone} onChange={(e)=> setPhone(e.target.value)} />
+          <input type="text" required maxlength="50" placeholder="Avtomaşın istehsalçısı (Audi, Skoda, ...)" value={vendor} onChange={(e)=> setVendor(e.target.value)} />
+          <input type="text" required maxlength="50" placeholder="Avtomaşın modeli (A6, Octavia, ...)" value={model} onChange={(e)=> setModel(e.target.value)} />
+          <input type="number" required maxlength="50" placeholder="Burxılış ili" value={year} onChange={(e)=> setYear(e.target.value)} />
+          <input type="text" required maxlength="50" placeholder="Avtomaşın qeydiyyat nömrəsi" value={plate} onChange={(e)=> setPlate(e.target.value)} />
+          <input type="text" maxlength="50" placeholder="İş yeriniz/şirkətin adı" value={company} onChange={(e)=> setCompany(e.target.value)} />
+          <button type="submit" onClick={dataSaved}>Yadda saxla</button>
+        </form>
       }
+
+      {accounts &&
+        accounts
+        .filter(e=> e.user===user.email)
+        .map(e=> (
+          <div className="profile-view">
+            <h2>{e.user}</h2>
+            <p>İş yeri: {e.company}</p>
+            <p>{e.vendor} / {e.model} markalı avtomaşın</p>
+            <p>Buraxılış ili: {e.year}</p>
+            <p>Qeydiyyat nömrəsi: {e.plate}</p>
+            <p>Telefon nömrəsi: {e.phone}</p>
+          </div>
+        ))
+      }
+
     </div>
   );
 }
