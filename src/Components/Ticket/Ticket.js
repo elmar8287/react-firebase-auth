@@ -60,6 +60,7 @@ const Ticket = ({user}) => {
       <Link to="/tickets" className="success-login-link">Sorğularım</Link> bölməsinə keçin edin</div>}
       <form className="ticket-form" onSubmit={handleSubmit}>
         <input type="date" required min={minDate} placeholder="Select the date" value={date} onChange={(e)=> {setDate(e.target.value); modalHandle()}} />
+        <input type="text" required placeholder='select the time' onClick={()=> console.log("Time selected")} />
         <select value={cat} onChange={(e)=> setCat(e.target.value)}>
           <option>Yağ dəyişmə</option>
           <option>Mühərrik problemi</option>
