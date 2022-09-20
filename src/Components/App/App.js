@@ -1,8 +1,17 @@
 import React, { useState, useEffect } from 'react';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route
+} from 'react-router-dom';
 import fire from '../Firebase/Fire';
 import Login from '../Login/Login';
 import Home from '../Home/Home';
+import Account from '../Account/Account';
 import "./App.css";
+import Navbar from '../Navbar/Navbar';
+import MyTickets from '../MyTickets/MyTickets';
+import firebase from 'firebase';
 
 const App = () => {
   const [user, setUser] = useState("");
@@ -80,19 +89,59 @@ const App = () => {
     authListener();
   },[]);
 
+  const [myTickets, setMyTickets] = useState([]);
+  const [loading, setLoading] = useState(false)
+  const db = firebase.firestore().collection("Tickets").orderBy('created', 'desc');
 
+  const fetchTickets = () => {
+    setLoading(true)
+    db.onSnapshot((querySnapshots) => {
+      const items = [];
+      querySnapshots.forEach((doc) => {
+        items.push(doc.data());
+      });
+      setMyTickets(items);
+      setLoading(false);
+    });
+  };
 
+  useEffect(()=> {
+    fetchTickets();
+  },[]);
+
+  const [accounts, setAccounts] = useState([]);
+  const db_accounts = firebase.firestore().collection("Accounts")
+
+  const fetchAccounts = () => {
+    db_accounts.onSnapshot((querySnapshots) => {
+      const items = [];
+      querySnapshots.forEach((doc) => {
+        items.push(doc.data());
+      });
+      setAccounts(items);
+    });
+  };
+
+  useEffect(()=> {
+    fetchAccounts();
+    console.log(accounts)
+  },[]);
+ 
   return (
-    <div>
-      <h1>Queue system</h1>
+    <Router>
+    <div className="App">
+    {
+      user && <Navbar handleLogout={handleLogout} user={user} myTickets={myTickets}/>
+    }
 
+      <Routes>
       {
         user ? (
-          <Home
-            handleLogout={handleLogout}
-          />
+          <Route path="/" element={<Home
+            user={user}
+          />} />
         ) : (
-          <Login
+          <Route path="/" element={<Login
             email={email}
             setEmail={setEmail}
             password={password} 
@@ -103,11 +152,14 @@ const App = () => {
             setHasAccount={setHasAccount}
             emailError={emailError}
             passwordError={passwordError}
-        />
+        />} />
         )
       }
-      
+      <Route path="/account" element={<Account user={user} accounts={accounts} />} />
+      <Route path="/tickets" element={<MyTickets user={user} myTickets={myTickets}/>} />
+      </Routes>
     </div>
+    </Router>
   );
 }
 

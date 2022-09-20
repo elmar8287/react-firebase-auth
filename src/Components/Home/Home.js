@@ -1,12 +1,10 @@
 import React from 'react';
+import Ticket from '../Ticket/Ticket.js';
 
-const Home = ({handleLogout}) => {
+const Home = ({ user}) => {   
   return (
-    <div>
-      <nav>
-        <h2>Wellcome</h2>
-        <button type="button" onClick={handleLogout}>Logout</button>
-      </nav>
+    <div className="home">
+      <Ticket user={user}/>
     </div>
   );
 }

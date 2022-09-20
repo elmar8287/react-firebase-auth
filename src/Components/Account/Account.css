@@ -1,0 +1,45 @@
+.profile-info {
+  margin-top: 30px;
+  padding: 10px;
+  width: 100%;
+}
+
+.profile-info h2 {
+  margin-top: 20px;
+}
+
+.success {
+  padding: 5px;
+  background-color: greenyellow;
+  margin: 10px 0 10px 0;
+  font-weight: 400;
+  border-radius: 5px
+}
+
+.profile-view {
+  padding: 5px;
+}
+
+.profile-view p {
+  margin-top: 5px;
+}
+
+@media screen and (min-width: 768px) {  
+  .profile-info {
+    margin-top: 30px;
+    padding: 30px;
+    width: 50%;
+  }
+  
+  .profile-info h2 {
+    margin-top: 20px;
+  }
+  
+  .success {
+    padding: 5px;
+    background-color: greenyellow;
+    margin: 10px 0 10px 0;
+    font-weight: 400;
+    border-radius: 5px
+  }
+}

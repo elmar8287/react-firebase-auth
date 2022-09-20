@@ -1,11 +1,18 @@
 import React from 'react';
+import firebase from 'firebase';
 
 const Login = ({email, setEmail, password, setPassword, handleLogin, handleSignup, hasAccount, setHasAccount, emailError, passwordError}) => {
+  const provider = new firebase.auth.GoogleAuthProvider();
+
+  const authWithGoogle = () => {
+    firebase.auth().signInWithPopup(provider);
+  }
+
   return (
-    <div>
-      <h2>Login page</h2>
-      <div>
+    <section className="login">
+      <div className="loginContainer">
         <input
+          maxlength="50"
           placeholder="Enter your email"
           type="email"
           autoFocus
@@ -13,34 +20,39 @@ const Login = ({email, setEmail, password, setPassword, handleLogin, handleSignu
           value={email}
           onChange={(e)=> setEmail(e.target.value)}
         />
-        <p>{emailError}</p>
+        <p className="errorMsg">{emailError}</p>
         <input
+          maxlength="50"
           placeholder="Password"
           type="password"
           requered
           value={password}
           onChange={(e)=> setPassword(e.target.value)}
         />
-        <p>{passwordError}</p>
-        <div>
+        <p className="errorMsg">{passwordError}</p>
+        <div className="btnContainer">
 
           {
             hasAccount ? (
               <>
-                <button type="button" onClick={handleLogin}>Sign In</button>
-                <p>Do not have an account? <span onClick={() => setHasAccount(!hasAccount)}>Sign Up</span></p>
+                <button type="button" onClick={handleLogin}>Daxil ol</button>
+                <p>Hesabınız yoxdur? <span onClick={() => setHasAccount(!hasAccount)}>Qeydiyyat</span></p>
               </>
             ) : (
               <>
-              <button type="button" onClick={handleSignup}>Sign Up</button>
-              <p>Have an account? <span  onClick={() => setHasAccount(!hasAccount)}>Sign In</span></p>
+              <button type="button" onClick={handleSignup}>Qeydiyyat</button>
+              <p>Hesabınız var? <span  onClick={() => setHasAccount(!hasAccount)}>Daxil ol</span></p>
             </>
             )
           }
 
         </div>
+        <div className="google-sign" onClick={authWithGoogle}>
+          <h2>Google ilə daxil ol</h2>
+          <img src="https://freesvg.org/img/1534129544.png" hight="20" width="50" alt="google-icon" />
+        </div>
       </div>
-    </div>
+    </section>
   );
 }
 
