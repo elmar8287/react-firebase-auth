@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Link
 } from 'react-router-dom';
@@ -6,6 +6,7 @@ import firebase from 'firebase';
 import moment from 'moment';
 import "./Ticket.css";
 import Queue from '../Queue/Queue';
+import Timing from '../../Timing/Timing';
 
 const Ticket = ({user}) => {
   const [date, setDate] = useState('');
@@ -24,6 +25,7 @@ const Ticket = ({user}) => {
       db.collection("Tickets").add({
         user: user.email,
         date: date,
+        time: selectedTime,
         cat: cat,
         odo: odo,
         note: note,
@@ -39,6 +41,7 @@ const Ticket = ({user}) => {
       setOdo("")
       setNote("")
       setCreated(true)
+      selectedTime("")
  
   };
 
@@ -47,7 +50,50 @@ const Ticket = ({user}) => {
     setModal(!modal)
   }
 
-  const [created, setCreated] = useState(false)
+  const [created, setCreated] = useState(false);
+
+  const [timeModal, setTimeModal] = useState(false);
+
+  const timeModalHandle = () => {
+    setTimeModal(!timeModal)
+  }
+
+  let range = [1]
+
+  const [times, setTimes] = useState(range);
+
+  const [selectedTime, setSelectedTime] = useState("")
+
+  // useEffect(()=> {
+  //   if(times.length===0) {
+  //     setSelectedTime("9:00")
+  //   }
+  // })
+
+  const saveTime = () => {
+    if(!times.includes(selectedTime)) {
+      times.push(selectedTime)
+      console.log(times)
+    }
+  }
+
+  const timeOptions = (e) => {
+    setSelectedTime(e.target.value)
+  }
+
+  // const [myTime, setMyTime] = useState(null)
+
+  // useEffect(()=> {
+  //   let newTimes = times.filter(e=>e!==myTime)
+  //   setTimes(newTimes)
+  //   console.log("Rendered", typeof(myTime))
+  // },[myTime])
+  
+
+  // const setMyTimeHandle = (e) => {
+  //   setMyTime(e);
+  //   console.log("Here I am", myTime)
+  // };
 
   return (
     <div className="ticket">
@@ -60,7 +106,14 @@ const Ticket = ({user}) => {
       <Link to="/tickets" className="success-login-link">Sorğularım</Link> bölməsinə keçin edin</div>}
       <form className="ticket-form" onSubmit={handleSubmit}>
         <input type="date" required min={minDate} placeholder="Select the date" value={date} onChange={(e)=> {setDate(e.target.value); modalHandle()}} />
-        <input type="text" required placeholder='select the time' onClick={()=> console.log("Time selected")} />
+        <input type="text" required placeholder='select the time' value={selectedTime} onClick={()=> setTimeModal(true)} />
+        {
+        timeModal ?
+          <div className="modal">
+            <Timing close={timeModalHandle} times={times} saveTime={saveTime} selectedTime={selectedTime} timeOptions={timeOptions} />
+          </div>
+          : null
+        }
         <select value={cat} onChange={(e)=> setCat(e.target.value)}>
           <option>Yağ dəyişmə</option>
           <option>Mühərrik problemi</option>

@@ -42,7 +42,7 @@ const MyTickets = ({user, myTickets}) => {
 
           <li>
             <div className="ticket-view">
-              <h4>Servisə gəlmə günü: {ticket.date}</h4>
+              <h4>Növbə vaxtı: {ticket.date} saat {ticket.time}</h4>
               <p>Növbə: {ticket.line}</p>
             </div>
             <p>Kategoriya: {ticket.cat}</p>
