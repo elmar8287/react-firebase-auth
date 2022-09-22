@@ -1,0 +1,47 @@
+.time-set {
+  padding: 10px;
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  margin: 3px;
+  width: 60px;
+}
+
+.time-list {
+  list-style: none;
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.modal-times-main {
+  padding: 5px;
+  color: white;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}
+
+.modal-main-selection {
+  margin-bottom: 5px;
+}
+
+.modal-main-button {
+  height: 10%;
+  bottom: 0;
+  width: 98%;
+  text-align: center;
+}
+
+.time-options {
+  padding: 10px;
+}
+
+.time-options span {
+  margin-left: 10px;
+  cursor: pointer;
+  border: solid white;
+  padding: 6px;
+  border-radius: 5px;
+}

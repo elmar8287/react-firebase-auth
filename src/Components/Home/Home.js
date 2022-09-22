@@ -1,10 +1,10 @@
 import React from 'react';
 import Ticket from '../Ticket/Ticket.js';
 
-const Home = ({ user}) => {   
+const Home = ({ user, myTickets}) => {   
   return (
     <div className="home">
-      <Ticket user={user}/>
+      <Ticket user={user} myTickets={myTickets}/>
     </div>
   );
 }

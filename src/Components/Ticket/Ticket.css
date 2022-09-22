@@ -46,6 +46,11 @@
   font-size: 50px;
 }
 
+.date-error {
+  color: red;
+  font-size: larger;
+}
+
 @media screen and (min-width: 768px) {  
   .ticket {
     background-color: white;
