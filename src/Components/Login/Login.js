@@ -33,7 +33,7 @@ const Login = ({email, setEmail, password, setPassword, handleLogin, handleSignu
         <div className="btnContainer">
 
           {
-            hasAccount ? (
+            !hasAccount ? (
               <>
                 <button type="button" onClick={handleLogin}>Daxil ol</button>
                 <p>Hesabınız yoxdur? <span onClick={() => setHasAccount(!hasAccount)}>Qeydiyyat</span></p>

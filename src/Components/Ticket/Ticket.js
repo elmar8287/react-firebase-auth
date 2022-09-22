@@ -8,7 +8,7 @@ import "./Ticket.css";
 import Queue from '../Queue/Queue';
 import Timing from '../../Timing/Timing';
 
-const Ticket = ({user}) => {
+const Ticket = ({user, myTickets}) => {
   const [date, setDate] = useState('');
   const [cat, setCat] = useState('');
   const [odo, setOdo] = useState('');
@@ -30,6 +30,7 @@ const Ticket = ({user}) => {
         odo: odo,
         note: note,
         created: datedate,
+        inLine: "1",
         line: user.line
       }).then((docRef) => {
         const docId = docRef.id;
@@ -58,22 +59,12 @@ const Ticket = ({user}) => {
     setTimeModal(!timeModal)
   }
 
-  let range = [1]
-
-  const [times, setTimes] = useState(range);
-
+  let range = myTickets.filter(e=>e.date===date).map(e=>(e.time))
   const [selectedTime, setSelectedTime] = useState("")
-
-  // useEffect(()=> {
-  //   if(times.length===0) {
-  //     setSelectedTime("9:00")
-  //   }
-  // })
-
   const saveTime = () => {
-    if(!times.includes(selectedTime)) {
-      times.push(selectedTime)
-      console.log(times)
+    if(!range.includes(selectedTime)) {
+      range.push(selectedTime)
+      console.log(range)
     }
   }
 
@@ -81,19 +72,21 @@ const Ticket = ({user}) => {
     setSelectedTime(e.target.value)
   }
 
-  // const [myTime, setMyTime] = useState(null)
+  const [inLineCheking, setInLineChecking] = useState(false)
 
-  // useEffect(()=> {
-  //   let newTimes = times.filter(e=>e!==myTime)
-  //   setTimes(newTimes)
-  //   console.log("Rendered", typeof(myTime))
-  // },[myTime])
-  
+  const inLineCheckingHandle = () => {
+    if(myTickets.filter(e=>e.date===date)
+    .filter(e=>e.user===user.email)
+    .filter(e=>e.inLine==="1").length===1) {
+      setInLineChecking(true)
+    } else {
+      setInLineChecking(false)
+    }
+  }
 
-  // const setMyTimeHandle = (e) => {
-  //   setMyTime(e);
-  //   console.log("Here I am", myTime)
-  // };
+  useEffect(()=> {
+    inLineCheckingHandle()
+  },[date])
 
   return (
     <div className="ticket">
@@ -110,7 +103,7 @@ const Ticket = ({user}) => {
         {
         timeModal ?
           <div className="modal">
-            <Timing close={timeModalHandle} times={times} saveTime={saveTime} selectedTime={selectedTime} timeOptions={timeOptions} />
+            <Timing range={range} close={timeModalHandle} saveTime={saveTime} selectedTime={selectedTime} timeOptions={timeOptions} />
           </div>
           : null
         }
@@ -120,14 +113,17 @@ const Ticket = ({user}) => {
           <option>Təkər problemi</option>
           <option>Başqa</option>
         </select>
-        <input type="number" min="0" maxlength="10" required placeholder="Odometer" value={odo} onChange={(e)=> setOdo(e.target.value)} />
+        <input type="number" min="0" maxlength="10" required placeholder="Odometer/Yürüş (km)" value={odo} onChange={(e)=> setOdo(e.target.value)} />
         <textarea type="text-area" maxlength="100" placeholder="Qeydlər" value={note} onChange={(e)=> setNote(e.target.value)} />
-        <button type="submit">Yarat</button>
+        {
+          !inLineCheking ? <button type="submit">Yarat</button>
+          : <p className="date-error">Seçdiyiniz tarixdə sorğunuz mövcud olduğu üçün başqa tarixi seçin</p>
+        }
       </form>
       {
           modal ?
           <div className="modal">
-            <Queue date={date} user={user} close={modalHandle}/>
+            <Queue inLineCheking={inLineCheking} date={date} user={user} close={modalHandle}/>
           </div>
           : null
         }

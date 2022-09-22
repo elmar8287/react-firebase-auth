@@ -1,58 +1,93 @@
 import React, {useState} from 'react';
 import "./Timing.css";
 
-const Timing = ({close, myTime, times, setMyTimeHandle, saveTime, selectedTime, timeOptions}) => {
-  const xxx = [
+const Timing = ({range, close, saveTime, selectedTime, timeOptions}) => {
+  const timeRange = [
+    "Vaxti sechin",
     "9:00",
+    "9:15",
     "9:30",
+    "9:45",
     "10:00",
+    "10:15",
     "10:30",
+    "10:45",
     "11:00",
+    "11:15",
     "11:30",
+    "11:45",
     "12:00",
+    "12:15",
     "12:30",
+    "12:45",
     "13:00",
+    "13:15",
     "13:30",
+    "13:45",
     "14:00",
+    "14:15",
     "14:30",
+    "14:45",
     "15:00",
+    "15:15",
     "15:30",
+    "15:45",
     "16:00",
+    "16:15",
     "16:30",
+    "16:45",
     "17:00"
   ];
+
+  console.log("times in Timing", range)
 
   const [timeSaved, setTimeSaved] = useState(true)
 
   return (
     <div className="modal-times-main">
+      
+      {
+        range.length<=33 ?
+        <div>
+          <div className="modal-main-selection">
       <ul className="time-list">
       {
-        times.map(e=>(
+        range.map(e=>(
           <li className="time-set">{e}</li>
         ))
       }
       </ul>
-
-      {
-        timeSaved ? 
-        <div>
-        <select onChange={timeOptions}>
+      </div>
+        <div className="time-options">
         {
-          xxx.map(e=>(<option>{e}</option>))
+          timeSaved ? 
+          <div>
+          <select onChange={timeOptions}>
+          {
+            timeRange.map(e=>(<option>{e}</option>))
+          }
+          </select>
+          {
+            !range.includes(selectedTime)
+            ? <span onClick={()=> {saveTime(); setTimeSaved(false)}}>Yadda saxla</span>
+            : <p>Bu vaxtda növbə var. Xahiş edirik başqa saatı seçərsiniz</p>
+          }
+          
+          </div>
+          :
+          <p>Uğurla yadda saxlanıldı</p>
         }
-        </select>
-        {
-          !times.includes(selectedTime)
-          ? <span onClick={()=> {saveTime(); setTimeSaved(false)}}>Yadda saxla</span>
-          : <p>Bu vaxtda növbə var. Xahiş edirik başqa vaxt seçəsiniz</p>
-        }
-        
         </div>
-        :
-        <p>Uğurla yadda saxlanıldı</p>
+        </div>
+        
+        : <p>Yerlər yoxdur</p>
       }
-      <button onClick={close}>Bağla</button>
+
+
+      
+      <div className="modal-main-button">
+         <button onClick={close}>Bağla</button>
+      </div>
     </div>
   );
 }
