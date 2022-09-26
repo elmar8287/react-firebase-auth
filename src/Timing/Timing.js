@@ -40,51 +40,44 @@ const Timing = ({range, close, saveTime, selectedTime, timeOptions}) => {
   ];
 
   console.log("times in Timing", range)
-
   const [timeSaved, setTimeSaved] = useState(true)
 
   return (
     <div className="modal-times-main">
-      
       {
         range.length<=33 ?
         <div>
           <div className="modal-main-selection">
-      <ul className="time-list">
-      {
-        range.map(e=>(
-          <li className="time-set">{e}</li>
-        ))
-      }
-      </ul>
-      </div>
-        <div className="time-options">
-        {
-          timeSaved ? 
-          <div>
-          <select onChange={timeOptions}>
-          {
-            timeRange.map(e=>(<option>{e}</option>))
-          }
-          </select>
-          {
-            !range.includes(selectedTime)
-            ? <span onClick={()=> {saveTime(); setTimeSaved(false)}}>Yadda saxla</span>
-            : <p>Bu vaxtda növbə var. Xahiş edirik başqa saatı seçərsiniz</p>
-          }
-          
+            <ul className="time-list">
+            {
+             range.map(e=>(
+              <li className="time-set">{e}</li>
+             ))
+            }
+            </ul>
           </div>
-          :
-          <p>Uğurla yadda saxlanıldı</p>
-        }
-        </div>
-        </div>
-        
+          <div className="time-options">
+          {
+            timeSaved ? 
+            <div>
+              <select onChange={timeOptions}>
+              {
+                timeRange.map(e=>(<option>{e}</option>))
+              }
+              </select>
+              {
+                !range.includes(selectedTime)
+                ? <span onClick={()=> {saveTime(); setTimeSaved(false)}}>Yadda saxla</span>
+                : <p>Bu vaxtda növbə var. Xahiş edirik başqa saatı seçərsiniz</p>
+              }
+            </div>
+            :
+            <p>Uğurla yadda saxlanıldı</p>
+          }
+          </div>
+          </div>
         : <p>Yerlər yoxdur</p>
       }
-
-
-      
       <div className="modal-main-button">
          <button onClick={close}>Bağla</button>
       </div>
