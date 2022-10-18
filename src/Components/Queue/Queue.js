@@ -35,15 +35,15 @@ const Queue = ({user, date, close, inLineCheking}) => {
       <div className="modal-main">
         {
           inLineCheking ?
-          <p>Bu gune artig sorgunuz var</p> :
-          xxx===33 ? <span>Yerlər yoxdur, hər-halda</span> :
+          <p>You have already created ticket for today</p> :
+          xxx===33 ? <span>No places, but </span> :
           <div>
-           <p>Seçdiyiniz tarixdə növbədə {xxx} nəfər var</p>  
-           <h3>Sizin növbəniz {user.line} olacaq</h3>
+           <p>You are {xxx} in line on selected date</p>  
+           <h3>Your line number will be {user.line}</h3>
           </div>
         }
 
-        <button onClick={close}>Davam et</button>
+        <button onClick={close}>Go on</button>
       </div>
     );
   }

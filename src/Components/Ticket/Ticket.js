@@ -90,14 +90,16 @@ const Ticket = ({user, myTickets}) => {
 
   return (
     <div className="ticket">
-      <h2>Növbə üçün sorğu</h2>
+      <h2>Queue request</h2>
       {created && 
         <div className="success-login">
-          <h4>Növbə uğurla yaradıldı!</h4>
-          <p>Sizin növbəniz</p>
-          <h3>{user.line}</h3>Daha ətraflı 
-      <Link to="/tickets" className="success-login-link">Sorğularım</Link> bölməsinə keçin edin</div>}
-      <form className="ticket-form" onSubmit={handleSubmit}>
+          <h4>Queue successfully created!</h4>
+          <p>Your line number is</p>
+          <h3>{user.line}</h3>More detail in
+      <Link to="/tickets" className="success-login-link">My tickets</Link> section</div>}
+      {
+        created ? null :
+        <form className="ticket-form" onSubmit={handleSubmit}>
         <input type="date" required min={minDate} placeholder="Select the date" value={date} onChange={(e)=> {setDate(e.target.value); modalHandle()}} />
         <input type="text" required placeholder='select the time' value={selectedTime} onClick={()=> setTimeModal(true)} />
         {
@@ -108,18 +110,21 @@ const Ticket = ({user, myTickets}) => {
           : null
         }
         <select value={cat} onChange={(e)=> setCat(e.target.value)}>
-          <option>Yağ dəyişmə</option>
-          <option>Mühərrik problemi</option>
-          <option>Təkər problemi</option>
-          <option>Başqa</option>
+          <option>Oil</option>
+          <option>Engine issue</option>
+          <option>While repair</option>
+          <option>Other</option>
         </select>
-        <input type="number" min="0" maxlength="10" required placeholder="Odometer/Yürüş (km)" value={odo} onChange={(e)=> setOdo(e.target.value)} />
-        <textarea type="text-area" maxlength="100" placeholder="Qeydlər" value={note} onChange={(e)=> setNote(e.target.value)} />
+        <input type="number" min="0" maxlength="10" required placeholder="Odometer (km)" value={odo} onChange={(e)=> setOdo(e.target.value)} />
+        <textarea type="text-area" maxlength="100" placeholder="Notes" value={note} onChange={(e)=> setNote(e.target.value)} />
         {
-          !inLineCheking ? <button type="submit">Yarat</button>
-          : <p className="date-error">Seçdiyiniz tarixdə sorğunuz mövcud olduğu üçün başqa tarixi seçin</p>
+          !inLineCheking ? <button type="submit">Create</button>
+          : <p className="date-error">There is already request on selected date</p>
         }
       </form>
+      }
+      
+
       {
           modal ?
           <div className="modal">
