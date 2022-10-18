@@ -67,19 +67,19 @@ const Timing = ({range, close, saveTime, selectedTime, timeOptions}) => {
               </select>
               {
                 !range.includes(selectedTime)
-                ? <span onClick={()=> {saveTime(); setTimeSaved(false)}}>Yadda saxla</span>
-                : <p>Bu vaxtda növbə var. Xahiş edirik başqa saatı seçərsiniz</p>
+                ? <span onClick={()=> {saveTime(); setTimeSaved(false)}}>Save</span>
+                : <p>There is a request on this time. Please, select another time</p>
               }
             </div>
             :
-            <p>Uğurla yadda saxlanıldı</p>
+            <p>Successfully saved</p>
           }
           </div>
           </div>
-        : <p>Yerlər yoxdur</p>
+        : <p>No places</p>
       }
       <div className="modal-main-button">
-         <button onClick={close}>Bağla</button>
+         <button onClick={close}>Close</button>
       </div>
     </div>
   );

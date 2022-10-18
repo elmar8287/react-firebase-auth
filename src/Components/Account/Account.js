@@ -52,21 +52,21 @@ const Account = ({user, accounts}) => {
 
   return (
     <div className="profile-info">
-      <Link to="/" className="nav-link">Qeriyə</Link>
-      <h2>Hesab məlumatları</h2>
+      <Link to="/" className="nav-link">Back</Link>
+      <h2>Account details</h2>
       {
-        saved ? <p className="success">Yadda saxlanıldı!</p> : !saved
+        saved ? <p className="success">Saved!</p> : !saved
       }
       {
         a.length === 0 && 
         <form className="ticket-form" onSubmit={handleSubmit}>
-          <input type="number" required maxlength="50" placeholder="Telefon nömrəniz" value={phone} onChange={(e)=> setPhone(e.target.value)} />
-          <input type="text" required maxlength="50" placeholder="Avtomaşın istehsalçısı (Audi, Skoda, ...)" value={vendor} onChange={(e)=> setVendor(e.target.value)} />
-          <input type="text" required maxlength="50" placeholder="Avtomaşın modeli (A6, Octavia, ...)" value={model} onChange={(e)=> setModel(e.target.value)} />
-          <input type="number" required maxlength="50" placeholder="Burxılış ili" value={year} onChange={(e)=> setYear(e.target.value)} />
-          <input type="text" required maxlength="50" placeholder="Avtomaşın qeydiyyat nömrəsi" value={plate} onChange={(e)=> setPlate(e.target.value)} />
-          <input type="text" maxlength="50" placeholder="İş yeriniz/şirkətin adı" value={company} onChange={(e)=> setCompany(e.target.value)} />
-          <button type="submit" onClick={dataSaved}>Yadda saxla</button>
+          <input type="number" required maxlength="50" placeholder="Phone number" value={phone} onChange={(e)=> setPhone(e.target.value)} />
+          <input type="text" required maxlength="50" placeholder="Car vendor (Audi, Skoda, ...)" value={vendor} onChange={(e)=> setVendor(e.target.value)} />
+          <input type="text" required maxlength="50" placeholder="Car model (A6, Octavia, ...)" value={model} onChange={(e)=> setModel(e.target.value)} />
+          <input type="number" required maxlength="50" placeholder="Year" value={year} onChange={(e)=> setYear(e.target.value)} />
+          <input type="text" required maxlength="50" placeholder="Plate number" value={plate} onChange={(e)=> setPlate(e.target.value)} />
+          <input type="text" maxlength="50" placeholder="Company name" value={company} onChange={(e)=> setCompany(e.target.value)} />
+          <button type="submit" onClick={dataSaved}>Save</button>
         </form>
       }
 
@@ -76,11 +76,11 @@ const Account = ({user, accounts}) => {
         .map(e=> (
           <div className="profile-view">
             <h2>{e.user}</h2>
-            <p>İş yeri: {e.company}</p>
-            <p>{e.vendor} / {e.model} markalı avtomaşın</p>
-            <p>Buraxılış ili: {e.year}</p>
-            <p>Qeydiyyat nömrəsi: {e.plate}</p>
-            <p>Telefon nömrəsi: {e.phone}</p>
+            <p>Company: {e.company}</p>
+            <p>{e.vendor} / {e.model}</p>
+            <p>Year: {e.year}</p>
+            <p>Plate number: {e.plate}</p>
+            <p>Phone number: {e.phone}</p>
           </div>
         ))
       }
