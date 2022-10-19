@@ -42,8 +42,8 @@ const MyTickets = ({user, myTickets}) => {
 
           <li>
             <div className="ticket-view">
-              <h4>Time: {ticket.date} saat {ticket.time}</h4>
-              <p>Queue: {ticket.line}</p>
+              <h4>Queue date: {ticket.date} at {ticket.time}</h4>
+              <p>Line number: {ticket.line}</p>
             </div>
             <p>Category: {ticket.cat}</p>
             <p>Odometer: {ticket.odo}</p>

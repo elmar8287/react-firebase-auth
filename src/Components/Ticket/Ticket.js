@@ -112,7 +112,7 @@ const Ticket = ({user, myTickets}) => {
         <select value={cat} onChange={(e)=> setCat(e.target.value)}>
           <option>Oil</option>
           <option>Engine issue</option>
-          <option>While repair</option>
+          <option>Wheel repair</option>
           <option>Other</option>
         </select>
         <input type="number" min="0" maxlength="10" required placeholder="Odometer (km)" value={odo} onChange={(e)=> setOdo(e.target.value)} />
