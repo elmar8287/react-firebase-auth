@@ -38,7 +38,7 @@ const Queue = ({user, date, close, inLineCheking}) => {
           <p>You have already created ticket for today</p> :
           xxx===33 ? <span>No places, but </span> :
           <div>
-           <p>You are {xxx} in line on selected date</p>  
+           <p>There are {xxx} waiting in line on selected date</p>  
            <h3>Your line number will be {user.line}</h3>
           </div>
         }

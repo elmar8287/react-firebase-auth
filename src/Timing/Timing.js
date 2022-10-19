@@ -3,7 +3,7 @@ import "./Timing.css";
 
 const Timing = ({range, close, saveTime, selectedTime, timeOptions}) => {
   const timeRange = [
-    "Vaxti sechin",
+    "Select the time",
     "9:00",
     "9:15",
     "9:30",
