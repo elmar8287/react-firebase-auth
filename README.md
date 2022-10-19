@@ -1,7 +1,7 @@
 # The queue system
 
 
-### This project was built for ticket system for companies which are daily gets a lot of clients.
+### This project was built for an online ticket system for companies that gets a lot of clients each day. The system makes the possibility to select the date and time for the appointment. It is strongly considered already booked date and time, so the company could be confident about careful queue assignment.
 
 # Built with
 
@@ -13,6 +13,10 @@
 # The [Demo Live](https://curious-pudding-d7282d.netlify.app) version is available
 
 <!-- <img width="848" alt="Screen Shot 2022-09-02 at 16 11 13" src="https://user-images.githubusercontent.com/49064106/188140193-ddaf8669-70da-4d28-9c7c-04f90c4704ea.png"> -->
+
+![image](https://user-images.githubusercontent.com/49064106/196610624-fc730d1b-daf3-4239-b2ff-a6c958c82ee1.png)
+
+![image](https://user-images.githubusercontent.com/49064106/196610860-1ce70b1f-5547-40fe-ba7d-1888e98fa419.png)
 
 
 ## Project status: on going
