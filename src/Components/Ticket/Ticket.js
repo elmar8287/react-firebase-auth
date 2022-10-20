@@ -9,9 +9,9 @@ import Queue from '../Queue/Queue';
 import Timing from '../../Timing/Timing';
 // import Select from 'react-select';
 
-const Ticket = ({user, myTickets}) => {
+const Ticket = ({user, myTickets, accounts}) => {
   const [date, setDate] = useState('');
-  const [cat, setCat] = useState('General issue');
+  const [cat, setCat] = useState('Not selected');
   const [odo, setOdo] = useState('');
   const [note, setNote] = useState('');
   const [lastAdded, setLastAdded] = useState("")
@@ -89,19 +89,12 @@ const Ticket = ({user, myTickets}) => {
     inLineCheckingHandle()
   },[date])
 
-  // const options = [
-  //   { value: 'chocolate', label: 'Chocolate' },
-  //   { value: 'strawberry', label: 'Strawberry' },
-  //   { value: 'vanilla', label: 'Vanilla' }
-  // ].
-  const profileData = accounts
-  const [hasProfile, setHasProfile] = useState(false)
-  // const profile = accounts.filter(e => e.user === user.email)
-  console.log(typeof(profileData))
+  const profileData = accounts.filter(e => e.user === user.email)
+
   return (
     <div className="ticket">
       {
-        !hasProfile ? 
+        profileData.length===0 ? 
         <p>This is your first login! Before you start, we ask you to fill the information in the 
           <Link to="/account"> Account</Link> section.
         </p> 

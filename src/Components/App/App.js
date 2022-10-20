@@ -124,7 +124,6 @@ const App = () => {
 
   useEffect(()=> {
     fetchAccounts();
-    console.log(accounts)
   },[]);
  
   return (

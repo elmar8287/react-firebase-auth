@@ -55,7 +55,9 @@ const Account = ({user, accounts}) => {
       <Link to="/" className="nav-link">Back</Link>
       <h2>Account details</h2>
       {
-        saved ? <p className="success">Saved!</p> : !saved
+        saved ? <p className="success">Well done! Let us start with the
+        <Link to="/"> Home </Link>
+        page</p> : !saved
       }
       {
         a.length === 0 && 
