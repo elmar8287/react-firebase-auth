@@ -12,6 +12,7 @@ import "./App.css";
 import Navbar from '../Navbar/Navbar';
 import MyTickets from '../MyTickets/MyTickets';
 import firebase from 'firebase';
+import About from '../About/About';
 
 const App = () => {
   const [user, setUser] = useState("");
@@ -124,7 +125,6 @@ const App = () => {
 
   useEffect(()=> {
     fetchAccounts();
-    console.log(accounts)
   },[]);
  
   return (
@@ -140,6 +140,7 @@ const App = () => {
           <Route path="/" element={<Home
             user={user}
             myTickets={myTickets}
+            accounts={accounts}
           />} />
         ) : (
           <Route path="/" element={<Login
@@ -157,6 +158,7 @@ const App = () => {
         )
       }
       <Route path="/account" element={<Account user={user} accounts={accounts} />} />
+      <Route path="/about" element={<About user={user} />} />
       <Route path="/tickets" element={<MyTickets user={user} myTickets={myTickets}/>} />
       </Routes>
     </div>

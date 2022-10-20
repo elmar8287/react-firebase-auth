@@ -44,6 +44,7 @@ const Timing = ({range, close, saveTime, selectedTime, timeOptions}) => {
 
   return (
     <div className="modal-times-main">
+      <p className='time-booking'>Here is the already booked time list</p>
       {
         range.length<=33 ?
         <div>
@@ -60,6 +61,7 @@ const Timing = ({range, close, saveTime, selectedTime, timeOptions}) => {
           {
             timeSaved ? 
             <div>
+            <p className='time-booking'>Please, book your time from the listed range below</p>
               <select onChange={timeOptions}>
               {
                 timeRange.map(e=>(<option>{e}</option>))

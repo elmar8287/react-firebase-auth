@@ -22,6 +22,7 @@ const Navbar = ({handleLogout, user, myTickets}) => {
         <Link to="/" className="nav-link">Home</Link>
         <Link to="/tickets" className="nav-link">My tickets({myTickets.filter(e => e.user===user.email).length}) </Link>
         <Link to="/account" className="nav-link">Account</Link>
+        <Link to="/about" className="nav-link">About & Help</Link>
         <Link to="/">
           <button type="button" onClick={handleLogout}>Log out</button>
         </Link>

@@ -1,10 +1,17 @@
-import React from 'react';
+import Reac, {useState} from 'react';
 import Ticket from '../Ticket/Ticket.js';
+import Account from '../Account/Account.js';
 
-const Home = ({ user, myTickets}) => {   
+const Home = ({ user, myTickets, accounts}) => {   
+  const [haveAccout, setHaveAccount] = useState(false)
   return (
     <div className="home">
-      <Ticket user={user} myTickets={myTickets}/>
+      {
+        haveAccout ?
+        <Account />
+        :
+        <Ticket user={user} myTickets={myTickets} accounts={accounts} />
+      }
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, accounts } from 'react';
 import {
   Link
 } from 'react-router-dom';
@@ -7,10 +7,11 @@ import moment from 'moment';
 import "./Ticket.css";
 import Queue from '../Queue/Queue';
 import Timing from '../../Timing/Timing';
+// import Select from 'react-select';
 
-const Ticket = ({user, myTickets}) => {
+const Ticket = ({user, myTickets, accounts}) => {
   const [date, setDate] = useState('');
-  const [cat, setCat] = useState('');
+  const [cat, setCat] = useState('Not selected');
   const [odo, setOdo] = useState('');
   const [note, setNote] = useState('');
   const [lastAdded, setLastAdded] = useState("")
@@ -88,50 +89,65 @@ const Ticket = ({user, myTickets}) => {
     inLineCheckingHandle()
   },[date])
 
+  const profileData = accounts.filter(e => e.user === user.email)
+
   return (
     <div className="ticket">
-      <h2>Queue request</h2>
-      {created && 
-        <div className="success-login">
-          <h4>Queue successfully created!</h4>
-          <p>Your line number is</p>
-          <h3>{user.line}</h3>More detail in
-      <Link to="/tickets" className="success-login-link">My tickets</Link> section</div>}
       {
-        created ? null :
-        <form className="ticket-form" onSubmit={handleSubmit}>
-        <input type="date" required min={minDate} placeholder="Select the date" value={date} onChange={(e)=> {setDate(e.target.value); modalHandle()}} />
-        <input type="text" required placeholder='select the time' value={selectedTime} onClick={()=> setTimeModal(true)} />
+        profileData.length===0 ? 
+        <p>This is your first login! Before you start, we ask you to fill the information in the 
+          <Link to="/account"> Account</Link> section.
+        </p> 
+        :
+        <div>
+        <h2>Queue request</h2>
+        {created && 
+          <div className="success-login">
+            <h4>Queue successfully created!</h4>
+            <p>Your line number is</p>
+            <h3>{user.line}</h3>More detail in
+        <Link to="/tickets" className="success-login-link">My tickets</Link> section</div>}
         {
-        timeModal ?
-          <div className="modal">
-            <Timing range={range} close={timeModalHandle} saveTime={saveTime} selectedTime={selectedTime} timeOptions={timeOptions} />
+          created ? null :
+          <form className="ticket-form" onSubmit={handleSubmit}>
+          <input type="date" required min={minDate} placeholder="Select the date" value={date} onChange={(e)=> {setDate(e.target.value); modalHandle()}} />
+          <input type="text" required placeholder='select the time' value={selectedTime} onClick={()=> setTimeModal(true)} />
+          {
+          timeModal ?
+            <div className="modal">
+              <Timing range={range} close={timeModalHandle} saveTime={saveTime} selectedTime={selectedTime} timeOptions={timeOptions} />
+            </div>
+            : null
+          }
+  
+           {/* <Select options={options} value={cat} onChange={(e)=> setCat(e.target.value)} /> */}
+          <select required value={cat} onChange={(e)=> setCat(e.target.value)}>
+            <option hidden>Select the category</option>
+            <option>Oil</option>
+            <option>Engine issue</option>
+            <option>Wheel repair</option>
+            <option>Other</option>
+          </select>
+          <input type="number" min="0" maxlength="10" required placeholder="Odometer (km)" value={odo} onChange={(e)=> setOdo(e.target.value)} />
+          <textarea type="text-area" maxlength="100" placeholder="Notes" value={note} onChange={(e)=> setNote(e.target.value)} />
+          {
+            !inLineCheking ? <button type="submit">Create</button>
+            : <p className="date-error">There is already request on selected date</p>
+          }
+        </form>
+        }
+        
+  
+        {
+            modal ?
+            <div className="modal">
+              <Queue inLineCheking={inLineCheking} date={date} user={user} close={modalHandle}/>
+            </div>
+            : null
+          }
           </div>
-          : null
-        }
-        <select value={cat} onChange={(e)=> setCat(e.target.value)}>
-          <option>Oil</option>
-          <option>Engine issue</option>
-          <option>Wheel repair</option>
-          <option>Other</option>
-        </select>
-        <input type="number" min="0" maxlength="10" required placeholder="Odometer (km)" value={odo} onChange={(e)=> setOdo(e.target.value)} />
-        <textarea type="text-area" maxlength="100" placeholder="Notes" value={note} onChange={(e)=> setNote(e.target.value)} />
-        {
-          !inLineCheking ? <button type="submit">Create</button>
-          : <p className="date-error">There is already request on selected date</p>
-        }
-      </form>
       }
-      
 
-      {
-          modal ?
-          <div className="modal">
-            <Queue inLineCheking={inLineCheking} date={date} user={user} close={modalHandle}/>
-          </div>
-          : null
-        }
     </div>
   );
 };
