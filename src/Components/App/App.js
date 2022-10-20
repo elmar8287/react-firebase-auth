@@ -140,6 +140,7 @@ const App = () => {
           <Route path="/" element={<Home
             user={user}
             myTickets={myTickets}
+            accounts={accounts}
           />} />
         ) : (
           <Route path="/" element={<Login
