@@ -4,13 +4,14 @@ import firebase from 'firebase';
 const Login = ({email, setEmail, password, setPassword, handleLogin, handleSignup, hasAccount, setHasAccount, emailError, passwordError}) => {
   const provider = new firebase.auth.GoogleAuthProvider();
 
-  const authWithGoogle = () => {
-    firebase.auth().signInWithPopup(provider);
-  }
-
   return (
     <section className="login">
+
       <div className="loginContainer">
+      <div className="app-title">
+      <h2>i n l i n e r</h2>
+      <p>save your time</p>
+      </div>
         <input
           maxlength="50"
           placeholder="Enter your email"
@@ -36,20 +37,16 @@ const Login = ({email, setEmail, password, setPassword, handleLogin, handleSignu
             !hasAccount ? (
               <>
                 <button type="button" onClick={handleLogin}>Login</button>
-                <p>Not registrated? <span onClick={() => setHasAccount(!hasAccount)}>Register</span></p>
+                <p>Not registrated? <span onClick={() => setHasAccount(!hasAccount)}>Sign Up</span></p>
               </>
             ) : (
               <>
-              <button type="button" onClick={handleSignup}>Register</button>
+              <button type="button" onClick={handleSignup}>Sign Up</button>
               <p>Already registrated? <span  onClick={() => setHasAccount(!hasAccount)}>Login</span></p>
             </>
             )
           }
 
-        </div>
-        <div className="google-sign" onClick={authWithGoogle}>
-          <h2>Login with Google</h2>
-          <img src="https://freesvg.org/img/1534129544.png" hight="20" width="50" alt="google-icon" />
         </div>
       </div>
     </section>

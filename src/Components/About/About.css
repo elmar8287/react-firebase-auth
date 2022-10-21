@@ -1,5 +1,11 @@
 .youtube {
-  border-radius: 10px;
-  border: solid red;
-  width: 20px;
+  margin-bottom: 20px;
+  background-color: rgb(126, 185, 124);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.contact-link {
+  margin-left: 4px;
+  color: blue;
 }

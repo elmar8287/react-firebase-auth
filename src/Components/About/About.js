@@ -10,7 +10,17 @@ function About({user}) {
         It is strongly considered already booked date and time, so the company could be confident
         about careful queue assignment.</p>
       <h3>We prepared the manual video for you about this app</h3>
-      <iframe width="320" height="315" src="https://www.youtube.com/embed/dGlfNVL2fpA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <p className='youtube'>
+        If you have an application you are interested in developing,
+        a feature that you need built or a project that needs coding,
+        then, please, go throw
+        <a href='https://elmar8287.github.io/#contact' className='contact-link'>
+        this contact form.
+        </a>
+        We’d love to help with it. Thanks!
+      </p>
+    
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/C5o-rLhmTKU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>
   );
 }
