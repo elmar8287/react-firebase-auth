@@ -1,4 +1,5 @@
-import React, { useState, useEffect, accounts } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import emailjs from 'emailjs-com';
 import {
   Link
 } from 'react-router-dom';
@@ -10,6 +11,8 @@ import Timing from '../../Timing/Timing';
 // import Select from 'react-select';
 
 const Ticket = ({user, myTickets, accounts}) => {
+  
+  const form = useRef();
   const [date, setDate] = useState('');
   const [cat, setCat] = useState('Not selected');
   const [odo, setOdo] = useState('');
@@ -23,6 +26,13 @@ const Ticket = ({user, myTickets, accounts}) => {
   const db = firebase.firestore()
   const handleSubmit = (e) => {
       e.preventDefault();
+      emailjs.sendForm('service_8nvyhs3', 'template_7702li7', form.current, '2LQw5SzGq0vlOXeu8')
+        .then((result) => {
+            console.log(result.text);
+        }, (error) => {
+            console.log(error.text);
+        });
+
       db.collection("Tickets").add({
         user: user.email,
         date: date,
@@ -109,9 +119,9 @@ const Ticket = ({user, myTickets, accounts}) => {
         <Link to="/tickets" className="success-login-link">My tickets</Link> section</div>}
         {
           created ? null :
-          <form className="ticket-form" onSubmit={handleSubmit}>
-          <input type="date" required min={minDate} placeholder="Select the date" value={date} onChange={(e)=> {setDate(e.target.value); modalHandle()}} />
-          <input type="text" required placeholder='select the time' value={selectedTime} onClick={()=> setTimeModal(true)} />
+          <form ref={form} className="ticket-form" onSubmit={handleSubmit}>
+          <input type="date" required min={minDate} placeholder="Select the date" value={date} onChange={(e)=> {setDate(e.target.value); modalHandle()}} name="lineDate"/>
+          <input type="text" required placeholder='select the time' value={selectedTime} onClick={()=> setTimeModal(true)} name="time"/>
           {
           timeModal ?
             <div className="modal">
@@ -121,15 +131,23 @@ const Ticket = ({user, myTickets, accounts}) => {
           }
   
            {/* <Select options={options} value={cat} onChange={(e)=> setCat(e.target.value)} /> */}
-          <select required value={cat} onChange={(e)=> setCat(e.target.value)}>
+          <select required value={cat} onChange={(e)=> setCat(e.target.value)} name="category">
             <option hidden>Select the category</option>
             <option>Oil</option>
             <option>Engine issue</option>
             <option>Wheel repair</option>
             <option>Other</option>
           </select>
-          <input type="number" min="0" maxlength="10" required placeholder="Odometer (km)" value={odo} onChange={(e)=> setOdo(e.target.value)} />
-          <textarea type="text-area" maxlength="100" placeholder="Notes" value={note} onChange={(e)=> setNote(e.target.value)} />
+          <input type="hidden" value={profileData.vendor} name="clientVendor" />
+          <input type="hidden" value={profileData.model} name="clientModel" />
+          <input type="hidden" value={profileData.plate} name="clientPlate" />
+          <input type="hidden" value={profileData.company} name="clientCompany" />
+          <input type="hidden" value={profileData.phone} name="clientPhone" />
+          <input type="hidden" value={user.line} name="lineNumber" />
+          <input type="hidden" value={user.displayName} name="userName" />
+          <input type="hidden" value={user.email} name="userMail" />
+          <input type="number" min="0" maxlength="10" required placeholder="Odometer (km)" value={odo} onChange={(e)=> setOdo(e.target.value)} name="odometer" />
+          <textarea name="message" type="text-area" maxlength="100" placeholder="Notes" value={note} onChange={(e)=> setNote(e.target.value)} />
           {
             !inLineCheking ? <button type="submit">Create</button>
             : <p className="date-error">There is already request on selected date</p>
