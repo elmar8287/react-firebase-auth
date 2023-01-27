@@ -1,24 +1,15 @@
 import firebase from 'firebase';
   
 const firebaseConfig = {
-  apiKey: "AIzaSyDGQOUBq5_U4yO9aMDxA65Id9KWs2oS890",
-  authDomain: "tickets-a05e3.firebaseapp.com",
-  databaseURL: "https://tickets-a05e3-default-rtdb.firebaseio.com",
-  projectId: "tickets-a05e3",
-  storageBucket: "tickets-a05e3.appspot.com",
-  messagingSenderId: "269007594637",
-  appId: "1:269007594637:web:248ca0d090a6830ce92ec4"
+  apiKey: "AIzaSyBKvdM5laqAWqoGEhZ-BMyPAxgoc1E4Aa4",
+  authDomain: "ticket-system-aa5a5.firebaseapp.com",
+  projectId: "ticket-system-aa5a5",
+  storageBucket: "ticket-system-aa5a5.appspot.com",
+  messagingSenderId: "189332080597",
+  appId: "1:189332080597:web:64953421ea6a274ef8df5c",
+  measurementId: "G-GTM8ZS2RN8"
 };
     
 const fire = firebase.initializeApp(firebaseConfig);
   
 export default fire;
-
-// apiKey: "AIzaSyAHtCClYX7fN-yyoIYrUVeqN2CI-DBVGO8",
-// authDomain: "avis-queue.firebaseapp.com",
-// databaseURL: "https://avis-queue-default-rtdb.firebaseio.com",
-// projectId: "avis-queue",
-// storageBucket: "avis-queue.appspot.com",
-// messagingSenderId: "309662597220",
-// appId: "1:309662597220:web:31d63526bdbb9fe5775f71",
-// measurementId: "G-BVZF40MTCE"

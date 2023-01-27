@@ -8,7 +8,6 @@ import moment from 'moment';
 import "./Ticket.css";
 import Queue from '../Queue/Queue';
 import Timing from '../../Timing/Timing';
-// import Select from 'react-select';
 
 const Ticket = ({user, myTickets, accounts}) => {
   

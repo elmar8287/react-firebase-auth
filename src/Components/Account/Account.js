@@ -15,8 +15,6 @@ const Account = ({user, accounts}) => {
   const [year, setYear] = useState('');
 
   let datedate = moment().format('YYYY-MM-D');
-  // const accountsList = accounts.filter(e => e.created==="2022-09-11")
-
 
   const db = firebase.firestore()
   const handleSubmit = (e) => {
