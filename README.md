@@ -18,7 +18,7 @@
 ![image](https://user-images.githubusercontent.com/49064106/196610860-1ce70b1f-5547-40fe-ba7d-1888e98fa419.png)
 
 
-## Project status: on going
+## Next steps:
 
 - Going to implement the Redux for state management
 
