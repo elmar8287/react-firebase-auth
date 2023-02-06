@@ -1,6 +1,6 @@
 # inliner - The Queue System
 
-### This project was built for an online ticket system for companies that gets a lot of clients each day. The system makes the possibility to select the date and time for the appointment. It is strongly considered already booked date and time, so the company could be confident about careful queue assignment.
+### This project was built for an online ticket system for companies, that gets a lot of clients each day. The system makes the possibility to select the date and time for the appointment. It is strongly considered already booked date and time, so the company could be confident about careful queue assignment.
 
 # Built with
 
