@@ -45,3 +45,4 @@ Feel free to check the [issues page](https://github.com/elmar8287/react-firebase
 Give a ⭐️ if you like this project!
 
 License could be find [here](https://github.com/elmar8287/react-firebase-auth/blob/dev/LICENSE)
+
